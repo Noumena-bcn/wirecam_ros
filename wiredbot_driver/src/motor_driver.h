@@ -17,6 +17,7 @@
 #define MOTOR_SERVO_MAX_PUL     700
 
 #include <std_msgs/Int32.h>
+#include <geometry_msgs/Twist.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -27,7 +28,7 @@
 class MotorDriver {
 public:
     MotorDriver();
-    void cmd_vel_callback(const std_msgs::Int32::ConstPtr& msg);
+    void cmd_vel_callback(const geometry_msgs::Twist::ConstPtr& msg);
 private:
 
 //    PCA9685 *pca9685;

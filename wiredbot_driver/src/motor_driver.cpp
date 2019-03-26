@@ -4,6 +4,8 @@
 
 #include <ros/ros.h>
 #include <std_msgs/Int32.h>
+#include <geometry_msgs/Twist.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -16,12 +18,12 @@ MotorDriver::MotorDriver() {
     motor_driver_test();
 }
 
-void MotorDriver::motor_driver_test(){
+void MotorDriver::motor_driver_test() {
     ROS_INFO("test");
 }
 
-void MotorDriver::cmd_vel_callback(const std_msgs::Int32::ConstPtr& msg){
-    ROS_INFO("%d", msg->data);
+void MotorDriver::cmd_vel_callback(const geometry_msgs::Twist::ConstPtr &msg) {
+    ROS_INFO("Velocity-> x: [%f], y: [%f], z: [%f]", msg->angular.x, msg->angular.y, msg->angular.z);
 }
 
 int main(int argc, char **argv) {
