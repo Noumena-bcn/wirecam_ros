@@ -4,7 +4,7 @@
 //
 /*----------INCLUDES------------------*/
 #include <ros.h>
-#include <std_msgs/Int8.h>
+#include <std_msgs/Int32.h>
 /*----------VAR DEFINITIONS----------*/
 double ch3_pin_value;
 
@@ -16,7 +16,7 @@ int pos = 0;
 const int ch3_pin = 13;
 /*----------ROS----------------------*/
 ros::NodeHandle  nh;
-std_msgs::Int8 ch3_msg;
+std_msgs::Int32 ch3_msg;
 ros::Publisher ch3_msg_pub("/teleop_ch3", &ch3_msg);
 /*-----------------------------------*/
 

@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
         pca9685->setPWMFrequency(60);
 
         while (nh.ok()) {
-//            ROS_INFO("pwm_signal: %f", pwm_signal) ;
+            ROS_INFO("pwm_signal: %f", pwm_signal) ;
 //            pca9685->setPWM(0,0,servoMin) ;
             ros::spinOnce();
         }
