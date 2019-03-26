@@ -16,7 +16,7 @@
 double pwm_signal = 0.0;
 
 void cmd_vel_callback(const geometry_msgs::Twist::ConstPtr &msg) {
-    ROS_INFO("Velocity-> x: [%f], y: [%f], z: [%f]", msg->linear.x, msg->linear.y, msg->linear.z);
+//    ROS_INFO("Velocity-> x: [%f], y: [%f], z: [%f]", msg->linear.x, msg->linear.y, msg->linear.z);
     pwm_signal = msg->linear.x;
 }
 
