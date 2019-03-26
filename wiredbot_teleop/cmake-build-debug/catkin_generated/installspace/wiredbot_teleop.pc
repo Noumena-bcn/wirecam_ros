@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: wiredbot_teleop
+Description: Description of wiredbot_teleop
+Version: 0.0.0
+Cflags: 
+Libs: -L/usr/local/lib 
+Requires: 

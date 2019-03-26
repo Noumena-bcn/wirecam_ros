@@ -1,0 +1,8 @@
+prefix=/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino/cmake-build-debug/devel
+
+Name: rosserial_arduino
+Description: Description of rosserial_arduino
+Version: 0.7.7
+Cflags: -I/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino/cmake-build-debug/devel/include
+Libs: -L/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino/cmake-build-debug/devel/lib 
+Requires: message_runtime

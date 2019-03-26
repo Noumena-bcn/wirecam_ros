@@ -1,0 +1,8 @@
+prefix=/home/starsky/stealingfire/ws/wiredbot_ws/src/wiredbot_teleop/cmake-build-debug/devel
+
+Name: wiredbot_teleop
+Description: Description of wiredbot_teleop
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/starsky/stealingfire/ws/wiredbot_ws/src/wiredbot_teleop/cmake-build-debug/devel/lib 
+Requires: 

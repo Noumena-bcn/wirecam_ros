@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/starsky/stealingfire/ws/wiredbot_ws/src/wiredbot_teleop/cmake-build-debug/devel/setup.sh
