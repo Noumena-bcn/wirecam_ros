@@ -14,8 +14,8 @@
 #include <wiredbot_driver/PWMPCA9685.h>
 
 int _pwm_signal = 0;
-int _min = 120 ;
-int _max = 720 ;
+int _min = 1500 ;
+int _max = 1950 ;
 
 int map(int x, int in_min, int in_max, int out_min, int out_max) {
     int toReturn = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
         pca9685->setPWMFrequency(60);
 
         while (nh.ok()) {
-            ROS_INFO("pwm_signal: %d", _pwm_signal) ;
+//            ROS_INFO("pwm_signal: %d", _pwm_signal) ;
 
             pca9685->setPWM(0,0,_pwm_signal) ;
             ros::spinOnce();
