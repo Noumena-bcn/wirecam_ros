@@ -22,16 +22,16 @@ void MotorDriver::motor_driver_test() {
     ROS_INFO("test");
 }
 
-void MotorDriver::cmd_vel_callback(const geometry_msgs::Twist::ConstPtr &msg) {
+void cmd_vel_callback(const geometry_msgs::Twist::ConstPtr &msg) {
     ROS_INFO("Velocity-> x: [%f], y: [%f], z: [%f]", msg->angular.x, msg->angular.y, msg->angular.z);
 }
 
 int main(int argc, char **argv) {
-    MotorDriver motor_driver;
+//    MotorDriver motor_driver;
     ros::init(argc, argv, "wiredbot_driver_motors");
 
     ros::NodeHandle nh;
-    ros::Subscriber sub = nh.subscribe("/cmd_vel", 1, &MotorDriver::cmd_vel_callback, &motor_driver);
+    ros::Subscriber sub = nh.subscribe("/cmd_vel", 1, cmd_vel_callback);
 
     ros::spin();
     return 0;
