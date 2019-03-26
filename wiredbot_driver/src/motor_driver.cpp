@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
     ros::init(argc, argv, "wiredbot_driver_motors");
 
     ros::NodeHandle nh;
-    ros::Subscriber sub = nh.subscribe("/cmd_vel", 1000, &MotorDriver::cmd_vel_callback, &motor_driver);
+    ros::Subscriber sub = nh.subscribe("/cmd_vel", 1, &MotorDriver::cmd_vel_callback, &motor_driver);
 
     ros::spin();
     return 0;
