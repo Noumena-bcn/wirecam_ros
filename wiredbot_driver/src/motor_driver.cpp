@@ -23,7 +23,7 @@ void cmd_vel_callback(const geometry_msgs::Twist::ConstPtr &msg) {
 
 int main(int argc, char **argv) {
     ros::init(argc, argv, "wiredbot_driver_motors");
-    ros::Rate loop_rate(10);
+//    ros::Rate loop_rate(10);
     ros::NodeHandle nh;
     ros::Subscriber sub = nh.subscribe("/cmd_vel", 5, cmd_vel_callback);
 
@@ -42,7 +42,7 @@ int main(int argc, char **argv) {
 //            ROS_INFO("pwm_signal: %d", pwm_signal) ;
             pca9685->setPWM(0,0,pwm_signal) ;
 //            ros::spinOnce();
-            loop_rate.sleep();
+            ros::spin();
         }
         ROS_INFO("PCA9685 Device Address: 0x%02X\n : CLOSE", pca9685->kI2CAddress);
         pca9685->closePCA9685();
