@@ -7,10 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino/cmake-build-debug/devel:$CMAKE_PREFIX_PATH"
-export LD_LIBRARY_PATH="/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino/cmake-build-debug/devel/lib:/home/starsky/stealingfire/ws/wiredbot_ws/devel/lib:/opt/ros/kinetic/lib:/opt/ros/kinetic/lib/x86_64-linux-gnu:/usr/local/cuda-9.0/lib64"
+export LD_LIBRARY_PATH="/home/starsky/stealingfire/ws/wiredbot_ws/devel/lib:/opt/ros/kinetic/lib:/opt/ros/kinetic/lib/x86_64-linux-gnu:/usr/local/cuda-9.0/lib64"
 export PATH="/opt/ros/kinetic/bin:/usr/local/cuda-9.0/bin:/home/starsky/bin:/home/starsky/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
-export PKG_CONFIG_PATH="/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino/cmake-build-debug/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
-export PYTHONPATH="/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino/cmake-build-debug/devel/lib/python2.7/dist-packages:/home/starsky/stealingfire/ws/wiredbot_ws/devel/lib/python2.7/dist-packages:$PYTHONPATH"
-export ROSLISP_PACKAGE_DIRECTORIES="/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino/cmake-build-debug/devel/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino:/home/starsky/stealingfire/ws/wiredbot_ws/src:/home/starsky/stealingfire/ws/wiredbot_ws/src/wiredbot_driver:/opt/ros/kinetic/share"
+export PYTHONPATH="/home/starsky/stealingfire/ws/wiredbot_ws/devel/lib/python2.7/dist-packages:$PYTHONPATH"
+export ROS_PACKAGE_PATH="/home/starsky/stealingfire/ws/wiredbot_ws/src:/home/starsky/stealingfire/ws/wiredbot_ws/src/wiredbot_driver:/home/starsky/stealingfire/ws/wiredbot_ws/src/wiredbot_teleop:/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino:/opt/ros/kinetic/share"

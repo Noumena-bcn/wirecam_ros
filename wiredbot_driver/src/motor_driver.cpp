@@ -29,20 +29,20 @@ int main(int argc, char **argv) {
     PCA9685 *pca9685 = new PCA9685();
 
     int err = pca9685->openPCA9685();
-    if (err < 0){
+    if (err < 0) {
         ROS_ERROR("Error: %d", pca9685->error);
     } else {
-        ROS_INFO("PCA9685 Device Address: 0x%02X\n : OPEN",pca9685->kI2CAddress) ;
-        pca9685->setAllPWM(0,0) ;
-        pca9685->reset() ;
-        pca9685->setPWMFrequency(60) ;
+        ROS_INFO("PCA9685 Device Address: 0x%02X\n : OPEN", pca9685->kI2CAddress);
+        pca9685->setAllPWM(0, 0);
+        pca9685->reset();
+        pca9685->setPWMFrequency(60);
 
-        while (nh.ok()){
+        while (nh.ok()) {
 //            ROS_INFO("pwm_signal: %f", pwm_signal) ;
 //            pca9685->setPWM(0,0,servoMin) ;
             ros::spinOnce();
         }
-        ROS_INFO("PCA9685 Device Address: 0x%02X\n : CLOSE",pca9685->kI2CAddress) ;
+        ROS_INFO("PCA9685 Device Address: 0x%02X\n : CLOSE", pca9685->kI2CAddress);
         pca9685->closePCA9685();
     }
 

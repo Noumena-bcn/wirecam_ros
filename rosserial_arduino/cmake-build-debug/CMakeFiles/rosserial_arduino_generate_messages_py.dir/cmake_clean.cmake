@@ -1,9 +1,9 @@
 file(REMOVE_RECURSE
   "CMakeFiles/rosserial_arduino_generate_messages_py"
-  "devel/lib/python2.7/dist-packages/rosserial_arduino/msg/_Adc.py"
-  "devel/lib/python2.7/dist-packages/rosserial_arduino/srv/_Test.py"
-  "devel/lib/python2.7/dist-packages/rosserial_arduino/msg/__init__.py"
-  "devel/lib/python2.7/dist-packages/rosserial_arduino/srv/__init__.py"
+  "/home/starsky/stealingfire/ws/wiredbot_ws/devel/lib/python2.7/dist-packages/rosserial_arduino/msg/_Adc.py"
+  "/home/starsky/stealingfire/ws/wiredbot_ws/devel/lib/python2.7/dist-packages/rosserial_arduino/srv/_Test.py"
+  "/home/starsky/stealingfire/ws/wiredbot_ws/devel/lib/python2.7/dist-packages/rosserial_arduino/msg/__init__.py"
+  "/home/starsky/stealingfire/ws/wiredbot_ws/devel/lib/python2.7/dist-packages/rosserial_arduino/srv/__init__.py"
 )
 
 # Per-language clean rules from dependency scanning.

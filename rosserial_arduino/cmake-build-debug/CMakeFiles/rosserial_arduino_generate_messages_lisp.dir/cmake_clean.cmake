@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/rosserial_arduino_generate_messages_lisp"
-  "devel/share/common-lisp/ros/rosserial_arduino/msg/Adc.lisp"
-  "devel/share/common-lisp/ros/rosserial_arduino/srv/Test.lisp"
+  "/home/starsky/stealingfire/ws/wiredbot_ws/devel/share/common-lisp/ros/rosserial_arduino/msg/Adc.lisp"
+  "/home/starsky/stealingfire/ws/wiredbot_ws/devel/share/common-lisp/ros/rosserial_arduino/srv/Test.lisp"
 )
 
 # Per-language clean rules from dependency scanning.

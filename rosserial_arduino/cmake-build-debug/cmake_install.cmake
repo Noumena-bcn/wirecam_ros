@@ -136,31 +136,31 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino/cmake-build-debug/devel/include/rosserial_arduino")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/starsky/stealingfire/ws/wiredbot_ws/devel/include/rosserial_arduino")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino/cmake-build-debug/devel/share/roseus/ros/rosserial_arduino")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/starsky/stealingfire/ws/wiredbot_ws/devel/share/roseus/ros/rosserial_arduino")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino/cmake-build-debug/devel/share/common-lisp/ros/rosserial_arduino")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/starsky/stealingfire/ws/wiredbot_ws/devel/share/common-lisp/ros/rosserial_arduino")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino/cmake-build-debug/devel/share/gennodejs/ros/rosserial_arduino")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/starsky/stealingfire/ws/wiredbot_ws/devel/share/gennodejs/ros/rosserial_arduino")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  execute_process(COMMAND "/usr/bin/python" -m compileall "/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino/cmake-build-debug/devel/lib/python2.7/dist-packages/rosserial_arduino")
+  execute_process(COMMAND "/usr/bin/python" -m compileall "/home/starsky/stealingfire/ws/wiredbot_ws/devel/lib/python2.7/dist-packages/rosserial_arduino")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages" TYPE DIRECTORY FILES "/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino/cmake-build-debug/devel/lib/python2.7/dist-packages/rosserial_arduino" REGEX "/\\_\\_init\\_\\_\\.py$" EXCLUDE REGEX "/\\_\\_init\\_\\_\\.pyc$" EXCLUDE)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages" TYPE DIRECTORY FILES "/home/starsky/stealingfire/ws/wiredbot_ws/devel/lib/python2.7/dist-packages/rosserial_arduino" REGEX "/\\_\\_init\\_\\_\\.py$" EXCLUDE REGEX "/\\_\\_init\\_\\_\\.pyc$" EXCLUDE)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages" TYPE DIRECTORY FILES "/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino/cmake-build-debug/devel/lib/python2.7/dist-packages/rosserial_arduino" FILES_MATCHING REGEX "/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino/cmake-build-debug/devel/lib/python2.7/dist-packages/rosserial_arduino/.+/__init__.pyc?$")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages" TYPE DIRECTORY FILES "/home/starsky/stealingfire/ws/wiredbot_ws/devel/lib/python2.7/dist-packages/rosserial_arduino" FILES_MATCHING REGEX "/home/starsky/stealingfire/ws/wiredbot_ws/devel/lib/python2.7/dist-packages/rosserial_arduino/.+/__init__.pyc?$")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)

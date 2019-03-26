@@ -17,6 +17,9 @@
 //Build shared libraries (DLLs).
 BUILD_SHARED_LIBS:BOOL=ON
 
+//No help, variable specified on the command line.
+CATKIN_DEVEL_PREFIX:PATH=/home/starsky/stealingfire/ws/wiredbot_ws/devel
+
 //Catkin enable testing
 CATKIN_ENABLE_TESTING:BOOL=ON
 

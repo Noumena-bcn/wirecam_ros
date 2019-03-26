@@ -68,7 +68,7 @@ set(rosserial_arduino_CONFIG_INCLUDED TRUE)
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
   set(rosserial_arduino_SOURCE_PREFIX /home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino)
-  set(rosserial_arduino_DEVEL_PREFIX /home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino/cmake-build-debug/devel)
+  set(rosserial_arduino_DEVEL_PREFIX /home/starsky/stealingfire/ws/wiredbot_ws/devel)
   set(rosserial_arduino_INSTALL_PREFIX "")
   set(rosserial_arduino_PREFIX ${rosserial_arduino_DEVEL_PREFIX})
 else()

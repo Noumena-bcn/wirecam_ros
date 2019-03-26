@@ -2,7 +2,7 @@
 DEVELSPACE = 'FALSE' == 'TRUE'
 INSTALLSPACE = 'TRUE' == 'TRUE'
 
-CATKIN_DEVEL_PREFIX = '/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino/cmake-build-debug/devel'
+CATKIN_DEVEL_PREFIX = '/home/starsky/stealingfire/ws/wiredbot_ws/devel'
 
 CATKIN_GLOBAL_BIN_DESTINATION = 'bin'
 CATKIN_GLOBAL_ETC_DESTINATION = 'etc'

@@ -2,7 +2,7 @@
 DEVELSPACE = 'TRUE' == 'TRUE'
 INSTALLSPACE = 'FALSE' == 'TRUE'
 
-CATKIN_DEVEL_PREFIX = '/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino/cmake-build-debug/devel'
+CATKIN_DEVEL_PREFIX = '/home/starsky/stealingfire/ws/wiredbot_ws/devel'
 
 CATKIN_GLOBAL_BIN_DESTINATION = 'bin'
 CATKIN_GLOBAL_ETC_DESTINATION = 'etc'
@@ -26,7 +26,7 @@ CMAKE_CURRENT_SOURCE_DIR = '/home/starsky/stealingfire/ws/wiredbot_ws/src/rosser
 CMAKE_INSTALL_PREFIX = '/usr/local'
 CMAKE_SOURCE_DIR = '/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino'
 
-PKG_CMAKE_DIR = '/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino/cmake-build-debug/devel/share/rosserial_arduino/cmake'
+PKG_CMAKE_DIR = '/home/starsky/stealingfire/ws/wiredbot_ws/devel/share/rosserial_arduino/cmake'
 
 PROJECT_NAME = 'rosserial_arduino'
 PROJECT_BINARY_DIR = '/home/starsky/stealingfire/ws/wiredbot_ws/src/rosserial_arduino/cmake-build-debug'

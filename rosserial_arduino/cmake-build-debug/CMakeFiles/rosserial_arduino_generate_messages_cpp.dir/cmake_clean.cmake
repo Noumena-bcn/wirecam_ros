@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/rosserial_arduino_generate_messages_cpp"
-  "devel/include/rosserial_arduino/Adc.h"
-  "devel/include/rosserial_arduino/Test.h"
+  "/home/starsky/stealingfire/ws/wiredbot_ws/devel/include/rosserial_arduino/Adc.h"
+  "/home/starsky/stealingfire/ws/wiredbot_ws/devel/include/rosserial_arduino/Test.h"
 )
 
 # Per-language clean rules from dependency scanning.
