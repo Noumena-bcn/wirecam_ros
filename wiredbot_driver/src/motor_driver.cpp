@@ -23,7 +23,7 @@ void MotorDriver::motor_driver_test() {
 }
 
 void cmd_vel_callback(const geometry_msgs::Twist::ConstPtr &msg) {
-    ROS_INFO("Velocity-> x: [%f], y: [%f], z: [%f]", msg->angular.x, msg->angular.y, msg->angular.z);
+    ROS_INFO("Velocity-> x: [%f], y: [%f], z: [%f]", msg->linear.x, msg->linear.y, msg->linear.z);
 }
 
 int main(int argc, char **argv) {
