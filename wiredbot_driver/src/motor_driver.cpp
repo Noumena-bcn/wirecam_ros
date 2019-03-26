@@ -39,8 +39,8 @@ int main(int argc, char **argv) {
         pca9685->setPWMFrequency(60);
 
         while (nh.ok()) {
-            ROS_INFO("pwm_signal: %d", pwm_signal) ;
-//            pca9685->setPWM(0,0,servoMin) ;
+//            ROS_INFO("pwm_signal: %d", pwm_signal) ;
+            pca9685->setPWM(0,0,pwm_signal) ;
             ros::spinOnce();
         }
         ROS_INFO("PCA9685 Device Address: 0x%02X\n : CLOSE", pca9685->kI2CAddress);
