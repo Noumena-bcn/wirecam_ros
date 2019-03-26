@@ -13,11 +13,12 @@
 #include <time.h>
 #include <wiredbot_driver/PWMPCA9685.h>
 
-double pwm_signal = 0.0;
+int pwm_signal = 0;
+
 
 void cmd_vel_callback(const geometry_msgs::Twist::ConstPtr &msg) {
 //    ROS_INFO("Velocity-> x: [%f], y: [%f], z: [%f]", msg->linear.x, msg->linear.y, msg->linear.z);
-    pwm_signal = msg->linear.x;
+    pwm_signal = int(msg->linear.x);
 }
 
 int main(int argc, char **argv) {
@@ -38,7 +39,7 @@ int main(int argc, char **argv) {
         pca9685->setPWMFrequency(60);
 
         while (nh.ok()) {
-            ROS_INFO("pwm_signal: %f", pwm_signal) ;
+            ROS_INFO("pwm_signal: %d", pwm_signal) ;
 //            pca9685->setPWM(0,0,servoMin) ;
             ros::spinOnce();
         }
