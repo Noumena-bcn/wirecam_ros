@@ -29,6 +29,7 @@ def move_cmd(direction="-"):
 def callback_wiredbot_teleop(msg):
     global ch3_data
     ch3_data = msg.data[2]
+    rospy.loginfo(msg.data[2])
 
 
 if __name__ == '__main__':

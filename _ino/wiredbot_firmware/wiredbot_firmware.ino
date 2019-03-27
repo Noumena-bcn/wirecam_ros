@@ -19,6 +19,7 @@ _ROS_PUB _ros_pub;
   receiver.receiver_loop();
   _ros_pub.ch_3 = receiver.PWM_CH3;
   _ros_pub.ros_pub_loop();
+  delay(100);
  }
 
 ///*----------INCLUDES------------------*/

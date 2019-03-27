@@ -3,9 +3,9 @@
 // Created by Noumena on 24/03/19.
 //
 #include <ros.h>
-#include <std_msgs/Int32MultiArray.h>
+#include <std_msgs/Float32MultiArray.h>
 
-std_msgs::Int32MultiArray pins_msg;
+std_msgs::Float32MultiArray pins_msg;
 ros::Publisher pins_msg_pub("/ardunio", &pins_msg);
 
 class _ROS_PUB{
