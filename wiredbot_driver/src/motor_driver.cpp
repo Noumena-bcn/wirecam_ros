@@ -13,7 +13,7 @@
 #include <time.h>
 #include <wiredbot_driver/PWMPCA9685.h>
 
-int _pwm_signal = 0;
+int _pwm_signal = 1510;
 int _min = 1500 ;
 int _max = 1950 ;
 
