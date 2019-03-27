@@ -38,5 +38,5 @@ void loop() {
   ch3_msg_pub.publish( &ch3_msg );
   Serial.println(ch3_msg.data);
   nh.spinOnce();
-  delay(500);
+  delay(100);
   }

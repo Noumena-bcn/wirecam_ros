@@ -49,7 +49,7 @@ int main(int argc, char **argv) {
         while (nh.ok()) {
             ROS_INFO("pwm_signal: %d", _pwm_signal) ;
 
-            pca9685->setPWM(0,0,(_pwm_signal + -1)) ;
+//            pca9685->setPWM(0,0,(_pwm_signal + -1)) ;
             ros::spinOnce();
 //            ros::spin();
         }
