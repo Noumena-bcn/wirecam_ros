@@ -48,6 +48,7 @@ int main(int argc, char **argv) {
 
         while (nh.ok()) {
             if (_pwm_signal_motor != 0) {
+                ROS_INFO("PCA9685 pwm : %d", _pwm_signal_motor);
                 pca9685->setPWM(0, 0, _pwm_signal_motor);
             }
             ros::spinOnce();
