@@ -1,20 +1,18 @@
-//
-// Copyright (c) 2019 Noumena - ROMI
+// 2019 Noumena - ROMI
 // Created by Noumena on 24/03/19.
 //
 
 class RECEIVER_X8R{
-  private:
-  double ros_msg[];
+
   public:    
-    double PIN_CH1_PIN2 = 2;
-    double PIN_CH2_PIN3 = 3;
-    double PIN_CH3_PIN4 = 4;
-    double PIN_CH4_PIN5 = 5;
-    double PIN_CH5_PIN6 = 6;
-    double PIN_CH6_PIN7 = 7;
-    double PIN_CH7_PIN8 = 8;
-    double PIN_CH8_PIN9 = 8;
+    const int PIN_CH1_PIN2 = 2;
+    const int PIN_CH2_PIN3 = 3;
+    const int PIN_CH3_PIN4 = 4;
+    const int PIN_CH4_PIN5 = 5;
+    const int PIN_CH5_PIN6 = 6;
+    const int PIN_CH6_PIN7 = 7;
+    const int PIN_CH7_PIN8 = 8;
+    const int PIN_CH8_PIN9 = 9;
     double PWM_CH1;
     double PWM_CH2;
     double PWM_CH3;

@@ -4,9 +4,12 @@
 //
 #include <ros.h>
 #include <std_msgs/Float32MultiArray.h>
+#include <std_msgs/Int32.h>
+
 
 std_msgs::Float32MultiArray pins_msg;
-ros::Publisher pins_msg_pub("/ardunio", &pins_msg);
+
+ros::Publisher pins_msg_pub("/arduino_A", &pins_msg);
 
 class _ROS_PUB{
   private:
@@ -21,27 +24,29 @@ class _ROS_PUB{
     pins_msg.data[6] = 0.0;
     pins_msg.data[7] = 0.0;
     pins_msg.data[8] = 0.0;
-    pins_msg.data[9] = laser_1;
-    pins_msg.data[10] = laser_2;
+    pins_msg.data[9] = 0.0;
+    pins_msg.data[10] = 0.0;
 
   }
   
   public:
       ros::NodeHandle  nh;
 
-      double ch_3 = 0;
-      double laser_1 = 0;
-      double laser_2 = 0;
+      float ch_3;
+      float laser_1;
+      float laser_2;
       
     void ros_pub_setup(){
+       Serial.begin(57600);
+       pins_msg.data_length = 11;
        nh.initNode();
        nh.advertise(pins_msg_pub);
     }  
     
     void ros_pub_loop(){
-       nh.initNode();
        set_pin_msg_ros();
-       nh.advertise(pins_msg_pub);
-       nh.spinOnce();
+       pins_msg_pub.publish(&pins_msg);
+       nh.spinOnce(); 
+       delay(100);
     }  
 };

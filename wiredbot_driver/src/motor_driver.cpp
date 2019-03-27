@@ -26,7 +26,7 @@ int map(int x, int in_min, int in_max, int out_min, int out_max) {
 
 void cmd_vel_callback(const geometry_msgs::Twist::ConstPtr &msg) {
 //    ROS_INFO("Velocity-> x: [%f], y: [%f], z: [%f]", msg->linear.x, msg->linear.y, msg->linear.z);
-    _pwm_signal = map(int(msg->linear.x),1500, 1950, _min, _max);
+    _pwm_signal = msg->linear.x;
 }
 
 int main(int argc, char **argv) {
@@ -49,14 +49,12 @@ int main(int argc, char **argv) {
         while (nh.ok()) {
             ROS_INFO("pwm_signal: %d", _pwm_signal) ;
 
-//            pca9685->setPWM(0,0,(_pwm_signal + -1)) ;
+//            pca9685->setPWM(0,0,_pwm_signal);
             ros::spinOnce();
-//            ros::spin();
         }
         ROS_INFO("PCA9685 Device Address: 0x%02X\n : CLOSE", pca9685->kI2CAddress);
         pca9685->closePCA9685();
     }
 
-//    ros::spin();
     return 0;
 }
