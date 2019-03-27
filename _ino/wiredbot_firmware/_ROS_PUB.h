@@ -13,8 +13,9 @@ class _ROS_PUB{
   
   void set_pin_msg_ros()  {
     pins_msg.data[0] = 0.0;
-    pins_msg.data[2] = 0.0;
-    pins_msg.data[3] = ch_3;
+    pins_msg.data[1] = 0.0;
+    pins_msg.data[2] = ch_3;
+    pins_msg.data[3] = 0.0;
     pins_msg.data[4] = 0.0;
     pins_msg.data[5] = 0.0;
     pins_msg.data[6] = 0.0;
@@ -22,6 +23,7 @@ class _ROS_PUB{
     pins_msg.data[8] = 0.0;
     pins_msg.data[9] = laser_1;
     pins_msg.data[10] = laser_2;
+
   }
   
   public:

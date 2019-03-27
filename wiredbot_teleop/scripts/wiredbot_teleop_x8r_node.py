@@ -1,23 +1,23 @@
 #! /usr/bin/env python
 
 import rospy
-from std_msgs.msg import Int32
+from std_msgs.msg import Float32MultiArray
 from geometry_msgs.msg import Twist
 
-goal_data = 0
+ch3_data = 0
 _cmd_vel_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=3)
 
 
 def move_cmd(direction="-"):
 
     rospy.init_node('wiredbot_teleop_x8r')
-    _cmd_vel_sub = rospy.Subscriber('/ardunio', Int32, callback_wiredbot_teleop)
+    _cmd_vel_sub = rospy.Subscriber('/ardunio', Float32MultiArray, callback_wiredbot_teleop)
     _twist_object = Twist()
 
     rate = rospy.Rate(2)
     if direction != "stop":
         while not rospy.is_shutdown():
-            _twist_object.linear.x = goal_data
+            _twist_object.linear.x = ch3_data
             _cmd_vel_pub.publish(_twist_object)
             rate.sleep()
     else:
@@ -27,8 +27,8 @@ def move_cmd(direction="-"):
 
 
 def callback_wiredbot_teleop(msg):
-    global goal_data
-    goal_data = msg.data
+    global ch3_data
+    ch3_data = msg.data[2]
 
 
 if __name__ == '__main__':
