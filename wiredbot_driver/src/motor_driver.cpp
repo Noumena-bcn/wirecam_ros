@@ -13,9 +13,9 @@
 #include <time.h>
 #include <wiredbot_driver/PWMPCA9685.h>
 
-int _pwm_signal = 1510;
-int _min = 1500 ;
-int _max = 1950 ;
+int _pwm_signal_motor = 0;
+int _min = 1500;
+int _max = 1950;
 
 int map(int x, int in_min, int in_max, int out_min, int out_max) {
     int toReturn = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
@@ -26,7 +26,7 @@ int map(int x, int in_min, int in_max, int out_min, int out_max) {
 
 void cmd_vel_callback(const geometry_msgs::Twist::ConstPtr &msg) {
 //    ROS_INFO("Velocity-> x: [%f], y: [%f], z: [%f]", msg->linear.x, msg->linear.y, msg->linear.z);
-    _pwm_signal = msg->linear.x;
+    _pwm_signal_motor = (int)msg->linear.x;
 }
 
 int main(int argc, char **argv) {
@@ -47,9 +47,9 @@ int main(int argc, char **argv) {
         pca9685->setPWMFrequency(60);
 
         while (nh.ok()) {
-            ROS_INFO("pwm_signal: %d", _pwm_signal) ;
-
-//            pca9685->setPWM(0,0,_pwm_signal);
+            if (_pwm_signal_motor != 0) {
+                pca9685->setPWM(0, 0, _pwm_signal_motor);
+            }
             ros::spinOnce();
         }
         ROS_INFO("PCA9685 Device Address: 0x%02X\n : CLOSE", pca9685->kI2CAddress);
