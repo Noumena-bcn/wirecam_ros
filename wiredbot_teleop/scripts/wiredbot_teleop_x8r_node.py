@@ -11,7 +11,7 @@ _cmd_vel_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=3)
 def move_cmd(direction="-"):
 
     rospy.init_node('wiredbot_teleop_x8r')
-    _cmd_vel_sub = rospy.Subscriber('/teleop_ch3', Int32, callback_wiredbot_teleop)
+    _cmd_vel_sub = rospy.Subscriber('/ardunio', Int32, callback_wiredbot_teleop)
     _twist_object = Twist()
 
     rate = rospy.Rate(2)
