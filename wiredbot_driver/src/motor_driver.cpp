@@ -47,17 +47,17 @@ int main(int argc, char **argv) {
         pca9685->setAllPWM(0, 0);
         pca9685->reset();
         pca9685->setPWMFrequency(50);
-        int i = 0;
+        int i = 1;
         while (nh.ok()) {
             if (_pwm_signal_motor != 0) {
 //                ROS_INFO("PCA9685 pwm : %d", _pwm_signal_motor);
 //                pca9685->setPWM(0, 0, _pwm_signal_motor);
                 pca9685->setPWM(0,0,i) ;
-                pca9685->setPWM(1,0,servoMin) ;
+//                pca9685->setPWM(1,0,servoMin) ;
 
-                sleep(2) ;
-                pca9685->setPWM(1,0,map(90,0,180,servoMin, servoMax)) ;
-                sleep(2) ;
+//                sleep(0.1) ;
+//                pca9685->setPWM(1,0,map(90,0,180,servoMin, servoMax)) ;
+                sleep(1) ;
                 i++;
                 ROS_INFO("PCA9685 i : %d", i);
 
