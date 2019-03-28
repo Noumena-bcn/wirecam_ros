@@ -59,7 +59,7 @@ if __name__=="__main__":
     # TODO: do we really want command line params in addition to parameter server params?
     sys.argv = rospy.myargv(argv=sys.argv)
     if len(sys.argv) >= 2 :
-        port_name  = sys.argv[1]
+        port_name = sys.argv[1]
 
     while not rospy.is_shutdown():
         rospy.loginfo("Connecting to %s at %d baud" % (port_name, baud))
