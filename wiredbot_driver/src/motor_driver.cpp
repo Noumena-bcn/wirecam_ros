@@ -56,6 +56,7 @@ int main(int argc, char **argv) {
                 ROS_INFO("PCA9685 i : %i", i);
                 pca9685->setPWM(0,0, i) ;
                 i--;
+                sleep(1);
 
             }
             ros::spinOnce();
