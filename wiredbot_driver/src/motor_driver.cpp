@@ -14,7 +14,9 @@
 #include <wiredbot_driver/PWMPCA9685.h>
 
 float _pwm_signal_motor = 0;
-int _min = 1500;
+float f_min = 240;
+float f_max = 463;
+
 int _max = 1950;
  int servoMin = 120 ;
  int servoMax = 720 ;
@@ -47,14 +49,14 @@ int main(int argc, char **argv) {
         pca9685->setAllPWM(0, 0);
         pca9685->reset();
         pca9685->setPWMFrequency(50);
-        float i = 230;
+        uint16_t i = 4095;
         while (nh.ok()) {
             if (_pwm_signal_motor != 0) {
 //                ROS_INFO("PCA9685 pwm : %d", _pwm_signal_motor);
                 ROS_INFO("PCA9685 i : %f", i);
                 pca9685->setPWM(0,0, i) ;
                 sleep(1) ;
-                i++;
+                i--;
 
             }
             ros::spinOnce();
