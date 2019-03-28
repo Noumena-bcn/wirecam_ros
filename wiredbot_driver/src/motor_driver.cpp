@@ -49,15 +49,14 @@ int main(int argc, char **argv) {
         pca9685->setAllPWM(0, 0);
         pca9685->reset();
         pca9685->setPWMFrequency(50);
-        uint16_t i = 4095;
+        uint16_t i = 0;
         while (nh.ok()) {
-            if (_pwm_signal_motor != 0) {
+            if (_pwm_signal_motor > 0 && _pwm_signal_motor < 4095) {
 //                ROS_INFO("PCA9685 pwm : %d", _pwm_signal_motor);
                 ROS_INFO("PCA9685 i : %i", i);
                 pca9685->setPWM(0,0, i) ;
-                i--;
+                i = i + 10;
                 sleep(1);
-
             }
             ros::spinOnce();
         }
