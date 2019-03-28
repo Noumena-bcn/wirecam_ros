@@ -16,6 +16,8 @@
 int _pwm_signal_motor = 0;
 int _min = 1500;
 int _max = 1950;
+ int servoMin = 120 ;
+ int servoMax = 720 ;
 
 int map(int x, int in_min, int in_max, int out_min, int out_max) {
     int toReturn = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
@@ -48,8 +50,15 @@ int main(int argc, char **argv) {
 
         while (nh.ok()) {
             if (_pwm_signal_motor != 0) {
-                ROS_INFO("PCA9685 pwm : %d", _pwm_signal_motor);
-                pca9685->setPWM(0, 0, _pwm_signal_motor);
+//                ROS_INFO("PCA9685 pwm : %d", _pwm_signal_motor);
+//                pca9685->setPWM(0, 0, _pwm_signal_motor);
+                pca9685->setPWM(0,0,servoMin) ;
+                pca9685->setPWM(1,0,servoMin) ;
+
+                sleep(2) ;
+                pca9685->setPWM(0,0,servoMax) ;
+                pca9685->setPWM(1,0,map(90,0,180,servoMin, servoMax)) ;
+                sleep(2) ;
             }
             ros::spinOnce();
         }
