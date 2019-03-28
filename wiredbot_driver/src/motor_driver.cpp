@@ -54,7 +54,7 @@ int main(int argc, char **argv) {
             if (_pwm_signal_motor > 0 && _pwm_signal_motor < 4095) {
 //                ROS_INFO("PCA9685 pwm : %d", _pwm_signal_motor);
                 ROS_INFO("PCA9685 i : %i", i);
-                pca9685->setPWM(0,0, i) ;
+//                pca9685->setPWM(0,0, i) ;
                 i = i + 10;
                 sleep(1);
             }
