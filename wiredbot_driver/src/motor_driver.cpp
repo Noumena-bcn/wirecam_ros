@@ -59,6 +59,8 @@ int main(int argc, char **argv) {
                 pca9685->setPWM(1,0,map(90,0,180,servoMin, servoMax)) ;
                 sleep(2) ;
                 i++;
+                ROS_INFO("PCA9685 i : %d", i);
+
             }
             ros::spinOnce();
         }
