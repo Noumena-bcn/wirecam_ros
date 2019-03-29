@@ -49,7 +49,7 @@ int main(int argc, char **argv) {
         pca9685->setAllPWM(0, 0);
         pca9685->reset();
         pca9685->setPWMFrequency(50);
-        uint16_t i = 0;
+        float i = 240;
         while (nh.ok()) {
             if (_pwm_signal_motor >= 0 && _pwm_signal_motor <= 4095) {
 //                ROS_INFO("PCA9685 pwm : %d", _pwm_signal_motor);
