@@ -18,8 +18,8 @@ float f_min = 240;
 float f_max = 463;
 
 int _max = 1950;
- int servoMin = 120 ;
- int servoMax = 720 ;
+int servoMin = 120;
+int servoMax = 720;
 
 int map(int x, int in_min, int in_max, int out_min, int out_max) {
     int toReturn = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
@@ -48,20 +48,20 @@ int main(int argc, char **argv) {
         ROS_INFO("PCA9685 Device Address: 0x%02X\n : OPEN", pca9685->kI2CAddress);
         pca9685->setAllPWM(0, 0);
         pca9685->reset();
-        pca9685->setPWMFrequency(50);
+        pca9685->setPWMFrequency(60);
         uint16_t i = 0;
         while (nh.ok()) {
             if (_pwm_signal_motor >= 0 && _pwm_signal_motor <= 4095) {
 //                ROS_INFO("PCA9685 pwm : %d", _pwm_signal_motor);
                 ROS_INFO("PCA9685 i : %i", i);
-                pca9685->setPWM(0,0, i) ;
-                i = i + 10;
+                pca9685->setPWM(0, 0, i);
+                i = i + 5;
                 sleep(1);
             }
             ros::spinOnce();
         }
         ROS_INFO("PCA9685 Device Address: 0x%02X\n : CLOSE", pca9685->kI2CAddress);
-        pca9685->setPWM(0,0, 0);
+        pca9685->setPWM(0, 0, 0);
         pca9685->closePCA9685();
     }
 
