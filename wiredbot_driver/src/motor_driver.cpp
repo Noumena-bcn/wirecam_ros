@@ -48,7 +48,7 @@ int main(int argc, char **argv) {
         ROS_INFO("PCA9685 Device Address: 0x%02X\n : OPEN", pca9685->kI2CAddress);
         pca9685->setAllPWM(0, 0);
         pca9685->reset();
-        pca9685->setPWMFrequency(60);
+        pca9685->setPWMFrequency(50);
         uint16_t i = 0;
         while (nh.ok()) {
             if (_pwm_signal_motor >= 0 && _pwm_signal_motor <= 4095) {
@@ -57,6 +57,12 @@ int main(int argc, char **argv) {
                 pca9685->setPWM(0, 0, i);
                 i = i + 5;
                 sleep(1);
+            }
+            else{
+                i = 0;
+                ROS_INFO("PCA9685 i : %i", 0);
+                pca9685->setPWM(0, 0, 0);
+
             }
             ros::spinOnce();
         }
