@@ -74,7 +74,7 @@ int main(int argc, char **argv) {
         pca9685->setPWMFrequency(50);
 
         while (nh.ok()) {
-            if (power >= 1.00)
+            if (power <= 1.00)
             {
                 ROS_INFO("PCA9685 power : %f", power);
                 pwm = -int(duty_cycle * power);
