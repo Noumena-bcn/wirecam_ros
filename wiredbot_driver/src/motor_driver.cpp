@@ -34,7 +34,7 @@ void cmd_vel_callback(const geometry_msgs::Twist::ConstPtr &msg) {
     _pwm_signal_motor = msg->linear.x;
 }
 
-double setServoPulse(double pulse, int hz) {
+double pulseUS(double pulse, int hz) {
     double pulseLength;
 
     pulseLength = 1000000;   // 1,000,000 us per second
@@ -44,8 +44,6 @@ double setServoPulse(double pulse, int hz) {
     pulseLength /= 4096;  // 12 bits of resolution
     ROS_INFO("%fus per bit", pulseLength);
     pulse *= 1000000;  // convert to us
-    pulse /= pulseLength;
-    ROS_INFO("%f", pulse);
     return pulse;
 }
 
@@ -65,7 +63,7 @@ int main(int argc, char **argv) {
         ROS_INFO("PCA9685 Device Address: 0x%02X\n : OPEN", pca9685->kI2CAddress);
         pca9685->setAllPWM(0, 0);
         pca9685->reset();
-        pca9685->setPWMFrequency(1000);
+        pca9685->setPWMFrequency(50);
 
         uint16_t i = 0;
 
@@ -73,7 +71,7 @@ int main(int argc, char **argv) {
             if (_pwm_signal_motor >= 0 && _pwm_signal_motor <= 4095) {
                 ROS_INFO("PCA9685 pwm : %d", i);
 //                pca9685->setPWM(0, 0, i);
-                pca9685->setPWM(0, 0, i);
+                pca9685->setPWM(0, 0, pulseUS(i, 50));
                 i = i + 5;
                 sleep(1);
             } else {
