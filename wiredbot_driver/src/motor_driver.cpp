@@ -75,7 +75,6 @@ int main(int argc, char **argv) {
                 sleep(1);
             }
             sleep(1);
-            for (uint16_t pulselen = MAX; pulselen > MIN; pulselen--)
 
             for (uint16_t pwm_pulse = MAX; pwm_pulse > MIN; pwm_pulse--)  {
                 ROS_INFO("PCA9685 pwm : %i", _pwm_pulse);
