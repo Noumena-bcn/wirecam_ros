@@ -57,6 +57,8 @@ void PCA9685::setPWMFrequency(float frequency) {
     printf("Setting PCA9685 PWM frequency to %f Hz\n", frequency);
     float rangedFrequency = fmin(fmax(frequency, 40), 1000);
     int prescale = (int) (25000000.0f / (4096 * rangedFrequency) - 0.5f);
+    printf("Setting PCA9685 pre-scale to %i \n", prescale);
+
     // For debugging
     // printf("PCA9685 Prescale: 0x%02X\n",prescale) ;
     int oldMode = readByte(PCA9685_MODE1);

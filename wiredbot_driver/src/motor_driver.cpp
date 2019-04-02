@@ -67,14 +67,13 @@ int main(int argc, char **argv) {
         pca9685->reset();
         pca9685->setPWMFrequency(50);
 
-        double i = 16000;
+        double i = 0;
 
         while (nh.ok()) {
             if (_pwm_signal_motor >= 0 && _pwm_signal_motor <= 20000) {
                 ROS_INFO("PCA9685 pwm : %f", i);
 //                pca9685->setPWM(0, 0, i);
                 pca9685->setPWM(0, 0, i);
-                pulseUS(i, 50);
                 i = i + pulseUS(i, 50);
                 sleep(1);
             } else {
