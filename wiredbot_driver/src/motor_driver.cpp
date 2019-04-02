@@ -44,6 +44,7 @@ double pulseUS(double pulse, int hz) {
     pulseLength /= 4096;  // 12 bits of resolution
     ROS_INFO("%fus per bit", pulseLength);
     pulse *= 1000000;  // convert to us
+    ROS_INFO("%fus ", pulse);
     return pulse;
 }
 
