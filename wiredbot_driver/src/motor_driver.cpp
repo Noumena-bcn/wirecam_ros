@@ -64,7 +64,7 @@ int main(int argc, char **argv) {
         ROS_INFO("PCA9685 Device Address: 0x%02X\n : OPEN", pca9685->kI2CAddress);
         pca9685->setAllPWM(0, 0);
         pca9685->reset();
-        pca9685->setPWMFrequency(500);
+        pca9685->setPWMFrequency(50);
 
         uint16_t i = 0;
 
@@ -73,7 +73,7 @@ int main(int argc, char **argv) {
                 ROS_INFO("PCA9685 pwm : %d", i);
 //                pca9685->setPWM(0, 0, i);
                 pca9685->setPWM(0, 0, i);
-                pulseUS(i, 500);
+                pulseUS(i, 50);
                 i = i + 5;
                 sleep(1);
             } else {
