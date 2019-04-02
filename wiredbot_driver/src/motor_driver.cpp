@@ -81,6 +81,7 @@ int main(int argc, char **argv) {
                 ROS_INFO("PCA9685 pwm : %i", pwm);
                 pca9685->setPWM(0, 0, pwm);
                 power = power + 0.01;
+                sleep(1);
             }
 
 //            for (uint16_t pwm_pulse = MIN; pwm_pulse < MAX; pwm_pulse++) {
