@@ -21,6 +21,7 @@ int _max = 1950;
 int servoMin = 120;
 int servoMax = 720;
 
+
 int map(int x, int in_min, int in_max, int out_min, int out_max) {
     int toReturn = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     // For debugging:
@@ -32,6 +33,22 @@ void cmd_vel_callback(const geometry_msgs::Twist::ConstPtr &msg) {
 //    ROS_INFO("Velocity-> x: [%f], y: [%f], z: [%f]", msg->linear.x, msg->linear.y, msg->linear.z);
     _pwm_signal_motor = msg->linear.x;
 }
+
+double setServoPulse(double pulse, int hz) {
+    double pulseLength;
+
+    pulseLength = 1000000;   // 1,000,000 us per second
+    pulseLength /= hz;   // 60 Hz
+    ROS_INFO("%fus per period", pulseLength);
+
+    pulseLength /= 4096;  // 12 bits of resolution
+    ROS_INFO("%fus per bit", pulseLength);
+    pulse *= 1000000;  // convert to us
+    pulse /= pulseLength;
+    ROS_INFO("%f", pulse);
+    return pulse;
+}
+
 
 int main(int argc, char **argv) {
     ros::init(argc, argv, "wiredbot_driver_motors");
@@ -48,19 +65,20 @@ int main(int argc, char **argv) {
         ROS_INFO("PCA9685 Device Address: 0x%02X\n : OPEN", pca9685->kI2CAddress);
         pca9685->setAllPWM(0, 0);
         pca9685->reset();
-        pca9685->setPWMFrequency(50);
+        pca9685->setPWMFrequency(60);
+
         uint16_t i = 0;
+
         while (nh.ok()) {
             if (_pwm_signal_motor >= 0 && _pwm_signal_motor <= 4095) {
-//                ROS_INFO("PCA9685 pwm : %d", _pwm_signal_motor);
-                ROS_INFO("PCA9685 i : %i", i);
-                pca9685->setPWM(0, 0, i);
+                ROS_INFO("PCA9685 pwm : %d", i);
+//                pca9685->setPWM(0, 0, i);
+                pca9685->setPWM(0, 0, setServoPulse(i, 60));
                 i = i + 5;
                 sleep(1);
-            }
-            else{
+            } else {
                 i = 0;
-                ROS_INFO("PCA9685 i : %i", 0);
+                ROS_INFO("PCA9685 pwm : %d", 0);
                 pca9685->setPWM(0, 0, 0);
 
             }
