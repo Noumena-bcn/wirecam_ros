@@ -77,8 +77,8 @@ int main(int argc, char **argv) {
             sleep(1);
 
             for (uint16_t pwm_pulse = MAX; pwm_pulse > MIN; pwm_pulse--)  {
-                ROS_INFO("PCA9685 pwm : %i", _pwm_pulse);
-                pca9685->setPWM(0, 0, _pwm_pulse);
+                ROS_INFO("PCA9685 pwm : %i", pwm_pulse);
+                pca9685->setPWM(0, 0, pwm_pulse);
                 sleep(1);
             }
             ros::spinOnce();
