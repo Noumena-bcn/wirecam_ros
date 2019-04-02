@@ -16,6 +16,7 @@
 float _pwm_signal_motor = 0;
 float f_min = 240;
 float f_max = 463;
+// 8666 16000
 
 int _max = 1950;
 int servoMin = 120;
@@ -66,7 +67,7 @@ int main(int argc, char **argv) {
         pca9685->reset();
         pca9685->setPWMFrequency(50);
 
-        double i = 0;
+        double i = 8000;
 
         while (nh.ok()) {
             if (_pwm_signal_motor >= 0 && _pwm_signal_motor <= 20000) {
