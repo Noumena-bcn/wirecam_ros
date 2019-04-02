@@ -43,9 +43,9 @@ double pulseUS(double pulse, int hz) {
 
     pulseLength /= 4096;  // 12 bits of resolution
     ROS_INFO("%fus per bit", pulseLength);
-    pulse *= 1000000;  // convert to us
-    ROS_INFO("%fus ", pulse);
-    return pulse;
+//    pulse *= 1000000;  // convert to us
+//    ROS_INFO("%fus ", pulse);
+    return pulseLength;
 }
 
 
@@ -66,15 +66,15 @@ int main(int argc, char **argv) {
         pca9685->reset();
         pca9685->setPWMFrequency(50);
 
-        uint16_t i = 0;
+        double i = 0;
 
         while (nh.ok()) {
             if (_pwm_signal_motor >= 0 && _pwm_signal_motor <= 4095) {
-                ROS_INFO("PCA9685 pwm : %d", i);
+                ROS_INFO("PCA9685 pwm : %f", i);
 //                pca9685->setPWM(0, 0, i);
                 pca9685->setPWM(0, 0, i);
                 pulseUS(i, 50);
-                i = i + 5;
+                i = i + pulseUS(i, 50);
                 sleep(1);
             } else {
                 i = 0;
