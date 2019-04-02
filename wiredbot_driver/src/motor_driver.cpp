@@ -67,7 +67,7 @@ int main(int argc, char **argv) {
         pca9685->reset();
         pca9685->setPWMFrequency(50);
 
-        double i = 230;
+        double i = 16000;
 
         while (nh.ok()) {
             if (_pwm_signal_motor >= 0 && _pwm_signal_motor <= 20000) {
