@@ -13,9 +13,10 @@
 #include <time.h>
 #include <wiredbot_driver/PWMPCA9685.h>
 
-float _pwm_signal_motor = 0;
-float f_min = 240;
-float f_max = 463;
+int MIN = 240;
+int MAX = 463;
+int _pwm_pulse = MIN;
+
 // 8666 16000
 
 int _max = 1950;
@@ -32,7 +33,7 @@ int map(int x, int in_min, int in_max, int out_min, int out_max) {
 
 void cmd_vel_callback(const geometry_msgs::Twist::ConstPtr &msg) {
 //    ROS_INFO("Velocity-> x: [%f], y: [%f], z: [%f]", msg->linear.x, msg->linear.y, msg->linear.z);
-    _pwm_signal_motor = msg->linear.x;
+    _pwm_pulse = msg->linear.x;
 }
 
 double pulseUS(double pulse, int hz) {
@@ -67,20 +68,17 @@ int main(int argc, char **argv) {
         pca9685->reset();
         pca9685->setPWMFrequency(50);
 
-        double i = 0;
-
         while (nh.ok()) {
-            if (_pwm_signal_motor >= 0 && _pwm_signal_motor <= 20000) {
-                ROS_INFO("PCA9685 pwm : %f", i);
-//                pca9685->setPWM(0, 0, i);
-                pca9685->setPWM(0, 0, i);
-//                i = i + pulseUS(i, 50);
-                sleep(1);
-            } else {
-                i = 0;
-                ROS_INFO("PCA9685 pwm : %d", 0);
-                pca9685->setPWM(0, 0, 0);
+            for (uint16_t pwm_pulse = MIN; pwm_pulse < MAX; pwm_pulse++) {
+                ROS_INFO("PCA9685 pwm : %i", pwm_pulse);
+                pca9685->setPWM(0, 0, pwm_pulse);
+            }
+            sleep(500);
+            for (uint16_t pulselen = MAX; pulselen > MIN; pulselen--)
 
+            for (uint16_t pwm_pulse = MAX; pwm_pulse > MIN; pwm_pulse--)  {
+                ROS_INFO("PCA9685 pwm : %i", _pwm_pulse);
+                pca9685->setPWM(0, 0, _pwm_pulse);
             }
             ros::spinOnce();
         }
