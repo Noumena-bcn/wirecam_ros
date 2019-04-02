@@ -74,7 +74,7 @@ int main(int argc, char **argv) {
                 ROS_INFO("PCA9685 pwm : %f", i);
 //                pca9685->setPWM(0, 0, i);
                 pca9685->setPWM(0, 0, i);
-                i = i + pulseUS(i, 50);
+//                i = i + pulseUS(i, 50);
                 sleep(1);
             } else {
                 i = 0;
