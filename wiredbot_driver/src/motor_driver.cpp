@@ -14,7 +14,7 @@
 #include <wiredbot_driver/PWMPCA9685.h>
 
 int MIN = 240;
-int MAX = 463;
+int MAX = 462;
 int pwm_pulse;
 
 // 8666 16000
