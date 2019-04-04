@@ -78,7 +78,8 @@ int main(int argc, char **argv) {
                 ROS_INFO("PCA9685 pwm : %i", i);
                 pca9685->setPWM(0, 0, i);
             }
-//            ros::spinOnce();
+            sleep(2);
+            ros::spinOnce();
         }
         ROS_INFO("PCA9685 Device Address: 0x%02X\n : CLOSE", pca9685->kI2CAddress);
         pca9685->setPWM(0, 0, 0);
