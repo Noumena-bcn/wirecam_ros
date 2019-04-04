@@ -70,12 +70,12 @@ int main(int argc, char **argv) {
 
         while (nh.ok()) {
             for (int i = MAX; i >= MIN; i--){
-                ROS_INFO("PCA9685 pwm : %i", MAX);
+                ROS_INFO("PCA9685 pwm : %i", i);
                 pca9685->setPWM(0, 0, i);
                 sleep(2);
             }
             for (int i = MIN; i <= MAX; i++){
-                ROS_INFO("PCA9685 pwm : %i", MAX);
+                ROS_INFO("PCA9685 pwm : %i", i);
                 pca9685->setPWM(0, 0, i);
                 sleep(2);
             }
