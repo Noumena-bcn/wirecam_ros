@@ -81,8 +81,12 @@ int main(int argc, char **argv) {
             ROS_INFO("PCA9685 pwm : %i", MIN);
             pca9685->setPWM(0, 0, MIN);
             sleep(2);
+            pca9685->setPWM(0, 0, 0);
+            sleep(2);
             ROS_INFO("PCA9685 pwm : %i", MAX);
             pca9685->setPWM(0, 0, MAX);
+            pca9685->setPWM(0, 0, 0);
+            sleep(2);
             ros::spinOnce();
         }
         ROS_INFO("PCA9685 Device Address: 0x%02X\n : CLOSE", pca9685->kI2CAddress);
