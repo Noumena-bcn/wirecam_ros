@@ -45,15 +45,16 @@ void cmd_vel_callback(const geometry_msgs::Twist::ConstPtr &msg) {
 double servo_pulse(double pulse, int frequencyHz=60) {
     double pulse_length;
     int duty_cycle = 4095 + 1;
+    pulse += 1;
 
     pulse_length = 1000000.0;   // 1,000,000 us per second
     pulse_length /= frequencyHz;   // Hz
-    ROS_ERROR("%f us per period", pulse_length);
+    ROS_INFO("%f us per period", pulse_length);
     pulse_length /= duty_cycle;  // 12 bits of resolution 4.88281, 4.06901
-    ROS_ERROR("%f us per bit", pulse_length);
+    ROS_INFO("%f us per bit", pulse_length);
     pulse *= 1000.0;
     pulse /= pulse_length;
-    ROS_ERROR("%f pulse", pulse);
+    ROS_INFO("%f pulse", pulse);
     return pulse;
 }
 
