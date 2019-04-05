@@ -12,12 +12,14 @@
 #include <termios.h>
 #include <time.h>
 #include <wiredbot_driver/PWMPCA9685.h>
+// 219 - 290 || 306
 
-#define PERIOD_HZ 60
-#define MOTOR_CHANNEL 0
-#define PWM_FULL_REVERSE 240 // 1ms/20ms * 4096
-#define PWM_NEUTRAL 343      // 1.5ms/20ms * 4096
-#define PWM_FULL_FORWARD 445 // 2ms/20ms * 4096
+#define PERIOD_HZ 50
+#define MOTOR_A_CHANNEL 0
+#define MOTOR_B_CHANNEL 1
+#define PWM_FULL_REVERSE 204 // 1ms/20ms * 4096
+#define PWM_NEUTRAL 307      // 1.5ms/20ms * 4096
+#define PWM_FULL_FORWARD 409 // 2ms/20ms * 4096
 
 int MIN = 240;
 int MAX = 445;
@@ -80,11 +82,19 @@ int main(int argc, char **argv) {
         pca9685->setPWM(MOTOR_CHANNEL, 0, PWM_NEUTRAL);
 
         while (nh.ok()) {
-            double _i_A = 0;
-            while(_i_A <= 500){
-                ROS_INFO("PWM_FULL_POWER: %f", _i_A);
-                pca9685->setPWM(MOTOR_CHANNEL, 0, (int)servo_pulse(_i_A, PERIOD_HZ));
-                _i_A = _i_A + 1;
+            double FORWARD = PWM_FULL_FORWARD;
+            double REVERSE = PWM_FULL_REVERSE;
+
+            while(REVERSE <= PWM_NEUTRAL){
+                ROS_INFO("PWM_FULL_REVERSE: %f", REVERSE);
+                pca9685->setPWM(MOTOR_A_CHANNEL, 0, (int)servo_pulse(REVERSE, PERIOD_HZ));
+                REVERSE = REVERSE + 1;
+                sleep(2);
+            }
+            while(FORWARD <= PWM_NEUTRAL*2){
+                ROS_INFO("PWM_FULL_FORWARD: %f", FORWARD);
+                pca9685->setPWM(MOTOR_A_CHANNEL, 0, (int)servo_pulse(FORWARD, PERIOD_HZ));
+                FORWARD = FORWARD + 1;
                 sleep(2);
             }
         }
