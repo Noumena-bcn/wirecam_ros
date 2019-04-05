@@ -17,7 +17,7 @@
 #define PERIOD_HZ 50
 #define MOTOR_A_CHANNEL 0
 #define MOTOR_B_CHANNEL 1
-#define PWM_FULL_REVERSE_MIN 190 // 1ms/20ms * 4096 | 204 - 241
+#define PWM_FULL_REVERSE_MIN 100 // 1ms/20ms * 4096 | 204 - 241
 #define PWM_FULL_REVERSE_MAX 241 // 1ms/20ms * 4096 | 204 - 241
 
 #define PWM_NEUTRAL 307      // 1.5ms/20ms * 4096
