@@ -17,7 +17,7 @@
 #define PERIOD_HZ 50
 #define MOTOR_A_CHANNEL 0
 #define MOTOR_B_CHANNEL 1
-#define PWM_FULL_REVERSE_MIN 203 // 1ms/20ms * 4096 | 204 - 241
+#define PWM_FULL_REVERSE_MIN 200 // 1ms/20ms * 4096 | 204 - 241
 #define PWM_FULL_REVERSE_MAX 241 // 1ms/20ms * 4096 | 204 - 241
 
 #define PWM_NEUTRAL 307      // 1.5ms/20ms * 4096
@@ -47,20 +47,20 @@ void cmd_vel_callback(const geometry_msgs::Twist::ConstPtr &msg) {
     pwm_pulse = msg->linear.x;
 }
 
-double servo_pulse(double pulse, int period_hz = 60) {
-//    double pulse_length;
-//    int duty_cycle = 4095 + 1;
-//    pulse += 1;
-//
-//    pulse_length = 1000000.0;   // 1,000,000 us per second
-//    pulse_length /= period_hz;   // Hz
-//    ROS_INFO("%f us per period", pulse_length);
-//    pulse_length /= duty_cycle;  // 12 bits of resolution 4.88281, 4.06901
-//    ROS_INFO("%f us per bit", pulse_length);
-//    pulse *= 1000.0;
-//    pulse /= pulse_length;
+void servo_pulse(double pulse, int period_hz = 60) {
+    double pulse_length;
+    int duty_cycle = 4095 + 1;
+    pulse += 1;
+
+    pulse_length = 1000000.0;   // 1,000,000 us per second
+    pulse_length /= period_hz;   // Hz
+    ROS_INFO("%f us per period", pulse_length);
+    pulse_length /= duty_cycle;  // 12 bits of resolution 4.88281, 4.06901
+    ROS_INFO("%f us per bit", pulse_length);
+    pulse *= 1000.0;
+    pulse /= pulse_length;
     ROS_INFO("%f pulse", pulse);
-    return pulse;
+//    return pulse;
 }
 
 
@@ -85,8 +85,9 @@ int main(int argc, char **argv) {
 
         while (nh.ok()) {
             ROS_INFO("PWM_FULL_REVERSE_MIN: %i", PWM_FULL_REVERSE_MIN);
-            pca9685->setPWM(MOTOR_A_CHANNEL, 0, (int) servo_pulse(PWM_FULL_REVERSE_MIN, PERIOD_HZ));
+            pca9685->setPWM(MOTOR_A_CHANNEL, 0, PWM_FULL_REVERSE_MIN);
             sleep(2);
+            servo_pulse(PWM_FULL_REVERSE_MIN, PERIOD_HZ);
 //            double FORWARD = PWM_FULL_FORWARD;
 //            double REVERSE = PWM_FULL_REVERSE;
 //
