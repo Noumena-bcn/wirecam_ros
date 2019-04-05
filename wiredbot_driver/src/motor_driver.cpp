@@ -42,25 +42,20 @@ void cmd_vel_callback(const geometry_msgs::Twist::ConstPtr &msg) {
     pwm_pulse = msg->linear.x;
 }
 
-//int motor_test(int power){
-//    int pwm;
-//
-//    if (power < 0){
-//        pwm = -int(duty_cycle + power);
-//        if(pwm > duty_cycle){
-//            pwm = duty_cycle;
-//        }
-//    }
-//    else if (power > 0) {
-//        pwm = -int(duty_cycle + power);
-//        if (pwm > duty_cycle) {
-//            pwm = duty_cycle;
-//        }
-//    } else {
-//        pwm = 0;
-//    }
-//    return pwm;
-//}
+double servo_pulse(double pulse, int frequencyHz=60) {
+    double pulse_length;
+    int duty_cycle = 4095 + 1;
+
+    pulse_length = 1000000.0;   // 1,000,000 us per second
+    pulse_length /= frequencyHz;   // Hz
+    ROS_ERROR("%f us per period", pulse_length);
+    pulse_length /= duty_cycle;  // 12 bits of resolution 4.88281, 4.06901
+    ROS_ERROR("%f us per bit", pulse_length);
+    pulse *= 1000.0;
+    pulse /= pulse_length;
+    ROS_ERROR("%f pulse", pulse);
+    return pulse;
+}
 
 
 int main(int argc, char **argv) {
@@ -83,15 +78,13 @@ int main(int argc, char **argv) {
         pca9685->setPWM(MOTOR_CHANNEL, 0, PWM_NEUTRAL);
 
         while (nh.ok()) {
-            ROS_INFO("PWM_FULL_REVERSE: %d", PWM_FULL_REVERSE);
-            pca9685->setPWM(MOTOR_CHANNEL, 0, PWM_FULL_REVERSE);
-            sleep(2);
-            ROS_INFO("PWM_NEUTRAL: %d", PWM_NEUTRAL);
-            pca9685->setPWM(MOTOR_CHANNEL, 0, PWM_NEUTRAL);
-            sleep(2);
-            ROS_INFO("PWM_FULL_FORWARD: %d", PWM_FULL_FORWARD);
-            pca9685->setPWM(MOTOR_CHANNEL, 0, PWM_FULL_FORWARD);
-            sleep(2);
+            double _i_A = 0;
+            while(_i_A <= 1.0){
+                ROS_INFO("PWM_FULL_POWER: %f", _i_A);
+                pca9685->setPWM(MOTOR_CHANNEL, 0, (int)servo_pulse(_i_A));
+                _i_A = _i_A + 0.1;
+                sleep(2);
+            }
         }
         ROS_INFO("PCA9685 Device Address: 0x%02X\n : CLOSE", pca9685->kI2CAddress);
         pca9685->setPWM(0, 0, 0);
