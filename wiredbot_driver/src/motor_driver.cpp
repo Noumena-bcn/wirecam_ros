@@ -52,7 +52,7 @@ double servo_pulse(double pulse, int frequencyHz=60) {
     ROS_INFO("%f us per period", pulse_length);
     pulse_length /= duty_cycle;  // 12 bits of resolution 4.88281, 4.06901
     ROS_INFO("%f us per bit", pulse_length);
-    pulse *= 1000.0;
+    pulse *= 2000.0;
     pulse /= pulse_length;
     ROS_INFO("%f pulse", pulse);
     return pulse;
