@@ -17,9 +17,11 @@
 #define PERIOD_HZ 50
 #define MOTOR_A_CHANNEL 0
 #define MOTOR_B_CHANNEL 1
-#define PWM_FULL_REVERSE 204 // 1ms/20ms * 4096
+#define PWM_FULL_REVERSE_MIN 203 // 1ms/20ms * 4096 | 204 - 241
+#define PWM_FULL_REVERSE_MAX 241 // 1ms/20ms * 4096 | 204 - 241
+
 #define PWM_NEUTRAL 307      // 1.5ms/20ms * 4096
-#define PWM_FULL_FORWARD 409 // 2ms/20ms * 4096
+#define PWM_FULL_FORWARD 409 // 2ms/20ms * 4096 | 260
 
 int MIN = 240;
 int MAX = 445;
@@ -45,7 +47,7 @@ void cmd_vel_callback(const geometry_msgs::Twist::ConstPtr &msg) {
     pwm_pulse = msg->linear.x;
 }
 
-double servo_pulse(double pulse, int period_hz=60) {
+double servo_pulse(double pulse, int period_hz = 60) {
 //    double pulse_length;
 //    int duty_cycle = 4095 + 1;
 //    pulse += 1;
@@ -82,24 +84,27 @@ int main(int argc, char **argv) {
         pca9685->setPWM(MOTOR_A_CHANNEL, 0, PWM_NEUTRAL);
 
         while (nh.ok()) {
-            double FORWARD = PWM_FULL_FORWARD;
-            double REVERSE = PWM_FULL_REVERSE;
-
-            while(REVERSE <= PWM_NEUTRAL){
-                ROS_INFO("PWM_FULL_REVERSE: %f", REVERSE);
-                pca9685->setPWM(MOTOR_A_CHANNEL, 0, (int)servo_pulse(REVERSE, PERIOD_HZ));
-                REVERSE = REVERSE + 1;
-                sleep(2);
-            }
-            while(FORWARD <= PWM_NEUTRAL*2){
-                ROS_INFO("PWM_FULL_FORWARD: %f", FORWARD);
-                pca9685->setPWM(MOTOR_A_CHANNEL, 0, (int)servo_pulse(FORWARD, PERIOD_HZ));
-                FORWARD = FORWARD + 1;
-                sleep(2);
-            }
+            ROS_INFO("PWM_FULL_REVERSE_MIN: %i", PWM_FULL_REVERSE_MIN);
+            pca9685->setPWM(MOTOR_A_CHANNEL, 0, (int) servo_pulse(PWM_FULL_REVERSE_MIN, PERIOD_HZ));
+            sleep(2);
+//            double FORWARD = PWM_FULL_FORWARD;
+//            double REVERSE = PWM_FULL_REVERSE;
+//
+//            while(REVERSE <= PWM_NEUTRAL){
+//                ROS_INFO("PWM_FULL_REVERSE: %f", REVERSE);
+//                pca9685->setPWM(MOTOR_A_CHANNEL, 0, (int)servo_pulse(REVERSE, PERIOD_HZ));
+//                REVERSE = REVERSE + 1;
+//                sleep(2);
+//            }
+//            while(FORWARD <= PWM_NEUTRAL*2){
+//                ROS_INFO("PWM_FULL_FORWARD: %f", FORWARD);
+//                pca9685->setPWM(MOTOR_A_CHANNEL, 0, (int)servo_pulse(FORWARD, PERIOD_HZ));
+//                FORWARD = FORWARD + 1;
+//                sleep(2);
+//            }
         }
         ROS_INFO("PCA9685 Device Address: 0x%02X\n : CLOSE", pca9685->kI2CAddress);
-        pca9685->setPWM(0, 0, 0);
+        pca9685->setPWM(MOTOR_A_CHANNEL, 0, PWM_NEUTRAL);
         pca9685->closePCA9685();
     }
 
