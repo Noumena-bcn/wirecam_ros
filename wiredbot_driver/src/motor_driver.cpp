@@ -79,7 +79,7 @@ int main(int argc, char **argv) {
         pca9685->reset();
         pca9685->setPWMFrequency(PERIOD_HZ);
         sleep(1);
-        pca9685->setPWM(MOTOR_CHANNEL, 0, PWM_NEUTRAL);
+        pca9685->setPWM(MOTOR_A_CHANNEL, 0, PWM_NEUTRAL);
 
         while (nh.ok()) {
             double FORWARD = PWM_FULL_FORWARD;
