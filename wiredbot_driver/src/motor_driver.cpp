@@ -13,9 +13,15 @@
 #include <time.h>
 #include <wiredbot_driver/PWMPCA9685.h>
 
+#define MOTOR_CHANNEL 0
+#define PWM_FULL_REVERSE 204 // 1ms/20ms * 4096
+#define PWM_NEUTRAL 307      // 1.5ms/20ms * 4096
+#define PWM_FULL_FORWARD 409 // 2ms/20ms * 4096
+
 int MIN = 240;
 int MAX = 462;
 int pwm_pulse;
+
 
 // 8666 16000
 
@@ -36,19 +42,25 @@ void cmd_vel_callback(const geometry_msgs::Twist::ConstPtr &msg) {
     pwm_pulse = msg->linear.x;
 }
 
-double pulseUS(double pulse, int hz) {
-    double pulseLength;
-
-    pulseLength = 1000000;   // 1,000,000 us per second
-    pulseLength /= hz;   // 60 Hz
-    ROS_INFO("%fus per period", pulseLength);
-
-    pulseLength /= 4096;  // 12 bits of resolution
-    ROS_INFO("%fus per bit", pulseLength);
-//    pulse *= 1000000;  // convert to us
-//    ROS_INFO("%fus ", pulse);
-    return pulseLength;
-}
+//int motor_test(int power){
+//    int pwm;
+//
+//    if (power < 0){
+//        pwm = -int(duty_cycle + power);
+//        if(pwm > duty_cycle){
+//            pwm = duty_cycle;
+//        }
+//    }
+//    else if (power > 0) {
+//        pwm = -int(duty_cycle + power);
+//        if (pwm > duty_cycle) {
+//            pwm = duty_cycle;
+//        }
+//    } else {
+//        pwm = 0;
+//    }
+//    return pwm;
+//}
 
 
 int main(int argc, char **argv) {
@@ -66,28 +78,17 @@ int main(int argc, char **argv) {
         ROS_INFO("PCA9685 Device Address: 0x%02X\n : OPEN", pca9685->kI2CAddress);
         pca9685->setAllPWM(0, 0);
         pca9685->reset();
-        pca9685->setPWMFrequency(60);
+        pca9685->setPWMFrequency(50);
+        sleep(1);
+        pca9685->setPWM(MOTOR_CHANNEL, 0, PWM_NEUTRAL);
 
         while (nh.ok()) {
-//            for (int i = MAX; i >= MIN; i--){
-//                ROS_INFO("PCA9685 pwm : %i", i);
-//                pca9685->setPWM(0, 0, i);
-//            }
-//            sleep(2);
-//            for (int i = MIN; i <= MAX; i++){
-//                ROS_INFO("PCA9685 pwm : %i", i);
-//                pca9685->setPWM(0, 0, i);
-//            }
-            ROS_INFO("PCA9685 pwm : %i", MIN);
-            pca9685->setPWM(0, 0, MIN);
+            ROS_INFO("PWM_FULL_REVERSE: %d", PWM_FULL_REVERSE);
+            pca9685->setPWM(MOTOR_CHANNEL, 0, PWM_FULL_REVERSE);
             sleep(2);
-            pca9685->setPWM(0, 0, 0);
+            ROS_INFO("PWM_FULL_FORWARD: %d", PWM_FULL_FORWARD);
+            pca9685->setPWM(MOTOR_CHANNEL, 0, PWM_FULL_FORWARD);
             sleep(2);
-            ROS_INFO("PCA9685 pwm : %i", MAX);
-            pca9685->setPWM(0, 0, MAX);
-            pca9685->setPWM(0, 0, 0);
-            sleep(2);
-            ros::spinOnce();
         }
         ROS_INFO("PCA9685 Device Address: 0x%02X\n : CLOSE", pca9685->kI2CAddress);
         pca9685->setPWM(0, 0, 0);
