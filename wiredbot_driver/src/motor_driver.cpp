@@ -13,6 +13,7 @@
 #include <time.h>
 #include <wiredbot_driver/PWMPCA9685.h>
 
+#define PERIOD_HZ 60
 #define MOTOR_CHANNEL 0
 #define PWM_FULL_REVERSE 240 // 1ms/20ms * 4096
 #define PWM_NEUTRAL 343      // 1.5ms/20ms * 4096
@@ -42,17 +43,17 @@ void cmd_vel_callback(const geometry_msgs::Twist::ConstPtr &msg) {
     pwm_pulse = msg->linear.x;
 }
 
-double servo_pulse(double pulse, int frequencyHz=60) {
+double servo_pulse(double pulse, int period_hz=60) {
     double pulse_length;
     int duty_cycle = 4095 + 1;
     pulse += 1;
 
     pulse_length = 1000000.0;   // 1,000,000 us per second
-    pulse_length /= frequencyHz;   // Hz
+    pulse_length /= period_hz;   // Hz
     ROS_INFO("%f us per period", pulse_length);
     pulse_length /= duty_cycle;  // 12 bits of resolution 4.88281, 4.06901
     ROS_INFO("%f us per bit", pulse_length);
-    pulse *= 2000.0;
+    pulse *= 1000.0;
     pulse /= pulse_length;
     ROS_INFO("%f pulse", pulse);
     return pulse;
@@ -74,7 +75,7 @@ int main(int argc, char **argv) {
         ROS_INFO("PCA9685 Device Address: 0x%02X\n : OPEN", pca9685->kI2CAddress);
         pca9685->setAllPWM(0, 0);
         pca9685->reset();
-        pca9685->setPWMFrequency(50);
+        pca9685->setPWMFrequency(PERIOD_HZ);
         sleep(1);
         pca9685->setPWM(MOTOR_CHANNEL, 0, PWM_NEUTRAL);
 
@@ -82,7 +83,7 @@ int main(int argc, char **argv) {
             double _i_A = 0;
             while(_i_A <= 1.0){
                 ROS_INFO("PWM_FULL_POWER: %f", _i_A);
-                pca9685->setPWM(MOTOR_CHANNEL, 0, (int)servo_pulse(_i_A));
+                pca9685->setPWM(MOTOR_CHANNEL, 0, (int)servo_pulse(_i_A, PERIOD_HZ));
                 _i_A = _i_A + 0.1;
                 sleep(2);
             }
