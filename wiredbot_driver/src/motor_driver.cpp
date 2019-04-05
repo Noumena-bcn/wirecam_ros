@@ -44,17 +44,17 @@ void cmd_vel_callback(const geometry_msgs::Twist::ConstPtr &msg) {
 }
 
 double servo_pulse(double pulse, int period_hz=60) {
-    double pulse_length;
-    int duty_cycle = 4095 + 1;
-    pulse += 1;
-
-    pulse_length = 1000000.0;   // 1,000,000 us per second
-    pulse_length /= period_hz;   // Hz
-    ROS_INFO("%f us per period", pulse_length);
-    pulse_length /= duty_cycle;  // 12 bits of resolution 4.88281, 4.06901
-    ROS_INFO("%f us per bit", pulse_length);
-    pulse *= 1000.0;
-    pulse /= pulse_length;
+//    double pulse_length;
+//    int duty_cycle = 4095 + 1;
+//    pulse += 1;
+//
+//    pulse_length = 1000000.0;   // 1,000,000 us per second
+//    pulse_length /= period_hz;   // Hz
+//    ROS_INFO("%f us per period", pulse_length);
+//    pulse_length /= duty_cycle;  // 12 bits of resolution 4.88281, 4.06901
+//    ROS_INFO("%f us per bit", pulse_length);
+//    pulse *= 1000.0;
+//    pulse /= pulse_length;
     ROS_INFO("%f pulse", pulse);
     return pulse;
 }
@@ -81,10 +81,10 @@ int main(int argc, char **argv) {
 
         while (nh.ok()) {
             double _i_A = 0;
-            while(_i_A <= 1.0){
+            while(_i_A <= 500){
                 ROS_INFO("PWM_FULL_POWER: %f", _i_A);
                 pca9685->setPWM(MOTOR_CHANNEL, 0, (int)servo_pulse(_i_A, PERIOD_HZ));
-                _i_A = _i_A + 0.1;
+                _i_A = _i_A + 1;
                 sleep(2);
             }
         }
