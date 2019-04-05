@@ -14,12 +14,12 @@
 #include <wiredbot_driver/PWMPCA9685.h>
 
 #define MOTOR_CHANNEL 0
-#define PWM_FULL_REVERSE 204 // 1ms/20ms * 4096
-#define PWM_NEUTRAL 307      // 1.5ms/20ms * 4096
-#define PWM_FULL_FORWARD 409 // 2ms/20ms * 4096
+#define PWM_FULL_REVERSE 240 // 1ms/20ms * 4096
+#define PWM_NEUTRAL 343      // 1.5ms/20ms * 4096
+#define PWM_FULL_FORWARD 445 // 2ms/20ms * 4096
 
 int MIN = 240;
-int MAX = 462;
+int MAX = 445;
 int pwm_pulse;
 
 
@@ -85,6 +85,9 @@ int main(int argc, char **argv) {
         while (nh.ok()) {
             ROS_INFO("PWM_FULL_REVERSE: %d", PWM_FULL_REVERSE);
             pca9685->setPWM(MOTOR_CHANNEL, 0, PWM_FULL_REVERSE);
+            sleep(2);
+            ROS_INFO("PWM_NEUTRAL: %d", PWM_NEUTRAL);
+            pca9685->setPWM(MOTOR_CHANNEL, 0, PWM_NEUTRAL);
             sleep(2);
             ROS_INFO("PWM_FULL_FORWARD: %d", PWM_FULL_FORWARD);
             pca9685->setPWM(MOTOR_CHANNEL, 0, PWM_FULL_FORWARD);
